@@ -1,3 +1,4 @@
+using ExpenseManager.Interface;
 using ExpenseManager.Models;
 using Microsoft.EntityFrameworkCore;
 
@@ -8,6 +9,7 @@ builder.Services.AddDbContext<ExpenseDbContext>(options =>
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
+builder.Services.AddScoped<IExpenseService, ExpensesDataAcessLayer>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -27,6 +29,6 @@ app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+    pattern: "{controller=Expense}/{action=Index}/{id?}");
 
 app.Run();
